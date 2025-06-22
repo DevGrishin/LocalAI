@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/qt/qml/LocalAI/">
+    <file alias="Main.qml">C:/Game stuff/coding projects/Qt/LocalAI/Main.qml</file>
+  </qresource>
+</RCC>
+

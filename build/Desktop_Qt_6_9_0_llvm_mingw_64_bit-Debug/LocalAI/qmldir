@@ -1,0 +1,5 @@
+module LocalAI
+typeinfo appLocalAI.qmltypes
+prefer :/qt/qml/LocalAI/
+Main 1.0 Main.qml
+
