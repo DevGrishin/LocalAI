@@ -1,18 +1,14 @@
 import QtQuick
 import QtQuick.Controls
-import LocalAI
 import QtQuick3D 6.8
+
+
 
 Window {
     width: 1920
     height: 1080
     visible: true
     title: "LocalAI"
-
-
-
-
-
 
     Rectangle {
         id: bgMain
@@ -92,7 +88,7 @@ Window {
                     }
 
                     Keys.onPressed: (event) => {
-                        if ((event.key === Qt.Key_Enter || event.key === Qt.Key_Return)) {
+                        if ((event.key === Qt.Key_Enter || event.key === Qt.Key_Return) & myHandler.available) {
                             if (!(event.modifiers & Qt.ShiftModifier)){
                                 myHandler.onEnterPressed(text);
                                 text = "";
@@ -113,16 +109,15 @@ Window {
             opacity: 1
             wheelEnabled: false
             font.pointSize: 21
-            displayText: "Choose model"
+            displayText: "Loading Models..."
             flat: false
-            model: comboOptions
+            model: myHandler.comboOptions
             onCurrentTextChanged: {
                 displayText = currentText;
                 myHandler.onComboSelectionChanged(currentText)
             }
 
         }
-
         Rectangle {
             id: bgSettingsPanel
             x: 1705
@@ -148,12 +143,45 @@ Window {
             icon.source: "cog.png"
         }
 
-        Column {
-            id: displayList
-            x: 455
-            y: 121
-            width: 1401
-            height: 804
+        ScrollView {
+            id: chatScroll
+            x: 463
+            y: 98
+            width: 1441
+            height: 852
+
+            Column {
+                id: logColumn
+                x: 0
+                y: 0
+                width: 1417
+                height: 852
+                spacing: 15
+                objectName: "logColumn"
+
+                property var lastItem: null
+
+                function addItem(message) {
+                    var component = Qt.createComponent("Label.qml");
+                    if (component.status === Component.Ready) {
+                        var item = component.createObject(logColumn, {"text": message});
+                        if (item === null) {
+                            console.error("Failed to create item");
+                        } else {
+                            lastItem = item; // store reference to last added item
+                        }
+                    } else {
+                        console.error("Component not ready:", component.errorString());
+                    }
+                }
+
+                // Then later you can update lastItem's properties, e.g.
+                function updateLastItem(newText) {
+                    if (lastItem) {
+                        lastItem.text = newText;
+                    }
+                }
+            }
         }
 
         states: [

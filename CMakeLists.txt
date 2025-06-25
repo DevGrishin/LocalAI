@@ -18,6 +18,10 @@ qt_add_qml_module(appLocalAI
     QML_FILES
         Main.qml
         SOURCES AiHandler.h
+        RESOURCES
+        SOURCES AiHandler.cpp
+        RESOURCES cog.png
+        QML_FILES Label.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
