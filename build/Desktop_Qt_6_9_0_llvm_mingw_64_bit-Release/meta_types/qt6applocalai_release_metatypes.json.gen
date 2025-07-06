@@ -1,0 +1,231 @@
+[
+    {
+        "classes": [
+            {
+                "className": "MyHandler",
+                "lineNumber": 29,
+                "methods": [
+                    {
+                        "access": "public",
+                        "index": 6,
+                        "name": "loadModelsAsync",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 7,
+                        "name": "loadConversationHistory",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 8,
+                        "name": "createNewConversation",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "id",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 9,
+                        "name": "selectConversation",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "id",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 10,
+                        "name": "deleteConversation",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "id",
+                                "type": "int"
+                            },
+                            {
+                                "name": "newName",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 11,
+                        "name": "renameConversation",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "selected",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 12,
+                        "name": "onComboSelectionChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "text",
+                                "type": "std::string"
+                            }
+                        ],
+                        "index": 13,
+                        "name": "addItem",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "text",
+                                "type": "std::string"
+                            }
+                        ],
+                        "index": 14,
+                        "name": "updateLastItem",
+                        "returnType": "void"
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "comboOptions",
+                        "notify": "comboOptionsChanged",
+                        "read": "comboOptions",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QStringList",
+                        "user": false
+                    },
+                    {
+                        "constant": true,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "available",
+                        "read": "isAvailable",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "stop",
+                        "read": "isStop",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false,
+                        "write": "setStop"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 3,
+                        "name": "currentConversationId",
+                        "notify": "currentConversationChanged",
+                        "read": "currentConversationId",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "MyHandler",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "list",
+                                "type": "QStringList"
+                            }
+                        ],
+                        "index": 0,
+                        "name": "modelsReady",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 1,
+                        "name": "comboOptionsChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "message",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 2,
+                        "name": "messageAdded",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 3,
+                        "name": "currentConversationChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 4,
+                        "name": "conversationHistoryChanged",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "text",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 5,
+                        "name": "onEnterPressed",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "AiHandler.h",
+        "outputRevision": 69
+    }
+]

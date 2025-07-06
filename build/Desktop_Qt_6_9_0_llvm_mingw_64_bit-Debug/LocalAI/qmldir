@@ -1,6 +1,0 @@
-module LocalAI
-typeinfo appLocalAI.qmltypes
-prefer :/qt/qml/LocalAI/
-Main 1.0 Main.qml
-Label 1.0 Label.qml
-

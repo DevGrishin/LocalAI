@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="/qt/qml/LocalAI/">
+    <file alias="Main.qml">C:/Game stuff/coding projects/Qt/LocalAI/Main.qml</file>
+    <file alias="Label.qml">C:/Game stuff/coding projects/Qt/LocalAI/Label.qml</file>
+    <file alias="HistoryItem.qml">C:/Game stuff/coding projects/Qt/LocalAI/HistoryItem.qml</file>
+  </qresource>
+</RCC>
+

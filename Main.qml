@@ -2,8 +2,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick3D 6.8
 
-
-
 Window {
     width: 1920
     height: 1080
@@ -39,15 +37,58 @@ Window {
                 y: 158
                 width: 405
                 height: 873
-                contentHeight: historyList.width
-                contentWidth: historyList.implicitHeight
+                contentHeight: historyList.height
+                contentWidth: historyList.width
 
                 Column {
                     id: historyList
                     x: 0
                     y: 0
                     width: 405
-                    height: 873
+                    spacing: 8
+                    objectName: "historyList"
+
+                    function clear() {
+                        console.log("Clearing history list...");
+                        for (var i = children.length - 1; i >= 0; i--) {
+                            if (children[i].objectName === "historyItem") {
+                                children[i].destroy();
+                            }
+                        }
+                    }
+
+                    function addHistoryItem(itemData) {
+                        console.log("Adding history item:", itemData.conversationId, itemData.conversationName);
+                        var component = Qt.createComponent("HistoryItem.qml");
+                        if (component.status === Component.Ready) {
+                            var item = component.createObject(historyList, {
+                                "conversationId": itemData.conversationId,
+                                "conversationName": itemData.conversationName,
+                                "isSelected": itemData.isSelected,
+                                "objectName": "historyItem"
+                            });
+
+                            if (item) {
+                                item.selectConversation.connect(function(id) {
+                                    myHandler.selectConversation(id);
+                                });
+
+                                item.deleteConversation.connect(function(id) {
+                                    myHandler.deleteConversation(id);
+                                });
+
+                                item.renameConversation.connect(function(id, newName) {
+                                    myHandler.renameConversation(id, newName);
+                                });
+
+                                console.log("History item created successfully");
+                            } else {
+                                console.error("Failed to create history item");
+                            }
+                        } else {
+                            console.error("HistoryItem component not ready:", component.errorString());
+                        }
+                    }
                 }
             }
         }
@@ -70,7 +111,6 @@ Window {
                 height: bgUserInput.height - 10
                 contentHeight: userInputText.contentHeight + 12
 
-
                 TextArea {
                     id: userInputText
                     x: 0
@@ -84,7 +124,7 @@ Window {
                     font.pointSize: 20
                     placeholderText: qsTr("Enter prompt")
                     background: Rectangle {
-                            color: "transparent"
+                        color: "transparent"
                     }
 
                     Keys.onPressed: (event) => {
@@ -116,31 +156,6 @@ Window {
                 displayText = currentText;
                 myHandler.onComboSelectionChanged(currentText)
             }
-
-        }
-        Rectangle {
-            id: bgSettingsPanel
-            x: 1705
-            y: 8
-            width: 200
-            height: 200
-            visible: false
-            color: "#ffffff"
-        }
-        RoundButton {
-            id: settingsButton
-            x: 1842
-            y: 8
-            width: 70
-            height: 70
-            checkable: true
-            display: AbstractButton.IconOnly
-            flat: true
-            icon.color: "#1a1c1e"
-            highlighted: false
-            icon.height: 170
-            icon.width: 170
-            icon.source: "cog.png"
         }
 
         ScrollView {
@@ -159,7 +174,20 @@ Window {
                 spacing: 15
                 objectName: "logColumn"
 
+                function down(){
+                    ScrollBar.position = 1;
+                }
+
+
+
                 property var lastItem: null
+
+                function clear() {
+                    for (var i = children.length - 1; i >= 0; i--) {
+                        children[i].destroy();
+                    }
+                    lastItem = null;
+                }
 
                 function addItem(message) {
                     var component = Qt.createComponent("Label.qml");
@@ -168,14 +196,13 @@ Window {
                         if (item === null) {
                             console.error("Failed to create item");
                         } else {
-                            lastItem = item; // store reference to last added item
+                            lastItem = item;
                         }
                     } else {
                         console.error("Component not ready:", component.errorString());
                     }
                 }
 
-                // Then later you can update lastItem's properties, e.g.
                 function updateLastItem(newText) {
                     if (lastItem) {
                         lastItem.text = newText;
@@ -184,29 +211,37 @@ Window {
             }
         }
 
-        states: [
-            State {
-                name: "Settings"
-                when: settingsButton.checked
-
-                PropertyChanges {
-                    target: bgSettingsPanel
-                    x: 1316
-                    y: 8
-                    width: 596
-                    height: 270
-                    visible: true
-                    color: "#323142"
-                    radius: 34
-                }
-
-                PropertyChanges {
-                    target: bgUserInput
-                    radius: 29
-                }
+        Button {
+            id: newChatButton
+            x: 319
+            y: 23
+            height: 40
+            width: 100
+            text: qsTr("New Chat")
+            onClicked: {
+                myHandler.createNewConversation();
             }
-        ]
+        }
+
+        RoundButton {
+            id: roundButton
+            x: 1696
+            y: 972
+            width: 58
+            height: 58
+            text: "stop"
+            onClicked: myHandler.stop = false
+        }
     }
 
+    Connections {
+        target: myHandler
+        function onCurrentConversationChanged() {
+            console.log("Current conversation changed");
+        }
 
+        function onConversationHistoryChanged() {
+            console.log("Conversation history updated");
+        }
+    }
 }

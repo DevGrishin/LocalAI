@@ -4,7 +4,8 @@ project(LocalAI VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+
+find_package(Qt6 REQUIRED COMPONENTS Quick Sql)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -18,11 +19,12 @@ qt_add_qml_module(appLocalAI
     QML_FILES
         Main.qml
         SOURCES AiHandler.h
-        RESOURCES
         SOURCES AiHandler.cpp
-        RESOURCES cog.png
         QML_FILES Label.qml
+        SOURCES ollama.hpp
+        QML_FILES HistoryItem.qml
 )
+
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -36,9 +38,9 @@ set_target_properties(appLocalAI PROPERTIES
 )
 
 target_link_libraries(appLocalAI
-    PRIVATE Qt6::Quick
+    PRIVATE Qt6::Quick Qt6::Sql
 )
-
+include_directories(${CMAKE_SOURCE_DIR})
 include(GNUInstallDirs)
 install(TARGETS appLocalAI
     BUNDLE DESTINATION .

@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/qt/qml/LocalAI">
+    <file alias="qmldir">C:/Game stuff/coding projects/Qt/LocalAI/build/Desktop_Qt_6_9_0_llvm_mingw_64_bit-Release/LocalAI/qmldir</file>
+  </qresource>
+</RCC>
+
