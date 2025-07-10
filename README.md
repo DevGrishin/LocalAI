@@ -91,21 +91,6 @@ From the `build/` directory:
 
 ---
 
-## 📁 Project Structure
-
-```
-LocalAI/
-├── CMakeLists.txt
-├── main.cpp
-├── Main.qml
-├── Label.qml
-├── HistoryItem.qml
-├── AiHandler.h / .cpp
-└── ollama.hpp
-```
-
----
-
 ## 📦 Installation (Optional)
 
 To install the application system-wide (e.g., on Linux):
