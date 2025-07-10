@@ -99,14 +99,3 @@ To install the application system-wide (e.g., on Linux):
 cmake --install .
 ```
 
----
-
-## 📤 Deployment Notes
-
-You may need to bundle Qt runtime libraries when distributing:
-
-- **Linux**: Use `linuxdeployqt`
-- **Windows**: Use `windeployqt`
-- **macOS**: Use `macdeployqt`
-
----
