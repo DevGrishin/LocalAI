@@ -5,21 +5,21 @@
 #include <QtCore/qstring.h>
 
 namespace QmlCacheGeneratedCode {
-namespace _qt_qml_LocalAI_Main_qml { 
+namespace _qt_qml_LocalAI_src_Main_qml { 
     extern const unsigned char qmlData[];
     extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
     const QQmlPrivate::CachedQmlUnit unit = {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
     };
 }
-namespace _qt_qml_LocalAI_Label_qml { 
+namespace _qt_qml_LocalAI_src_Label_qml { 
     extern const unsigned char qmlData[];
     extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
     const QQmlPrivate::CachedQmlUnit unit = {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
     };
 }
-namespace _qt_qml_LocalAI_HistoryItem_qml { 
+namespace _qt_qml_LocalAI_src_HistoryItem_qml { 
     extern const unsigned char qmlData[];
     extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
     const QQmlPrivate::CachedQmlUnit unit = {
@@ -40,9 +40,9 @@ Q_GLOBAL_STATIC(Registry, unitRegistry)
 
 
 Registry::Registry() {
-    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/LocalAI/Main.qml"), &QmlCacheGeneratedCode::_qt_qml_LocalAI_Main_qml::unit);
-    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/LocalAI/Label.qml"), &QmlCacheGeneratedCode::_qt_qml_LocalAI_Label_qml::unit);
-    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/LocalAI/HistoryItem.qml"), &QmlCacheGeneratedCode::_qt_qml_LocalAI_HistoryItem_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/LocalAI/src/Main.qml"), &QmlCacheGeneratedCode::_qt_qml_LocalAI_src_Main_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/LocalAI/src/Label.qml"), &QmlCacheGeneratedCode::_qt_qml_LocalAI_src_Label_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/LocalAI/src/HistoryItem.qml"), &QmlCacheGeneratedCode::_qt_qml_LocalAI_src_HistoryItem_qml::unit);
     QQmlPrivate::RegisterQmlUnitCacheHook registration;
     registration.structVersion = 0;
     registration.lookupCachedQmlUnit = &lookupCachedUnit;

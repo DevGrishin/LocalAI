@@ -5,35 +5,38 @@ project(LocalAI VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
+
 find_package(Qt6 REQUIRED COMPONENTS Quick Sql)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appLocalAI
-    main.cpp
+    src/main.cpp
 )
 
 qt_add_qml_module(appLocalAI
     URI LocalAI
     VERSION 1.0
     QML_FILES
-        Main.qml
-        SOURCES AiHandler.h
-        SOURCES AiHandler.cpp
-        QML_FILES Label.qml
-        SOURCES ollama.hpp
-        QML_FILES HistoryItem.qml
+        src/Main.qml
+        SOURCES include/AiHandler.h
+        SOURCES src/AiHandler.cpp
+        QML_FILES src/Label.qml
+        SOURCES include/ollama.hpp
+        QML_FILES src/HistoryItem.qml
+        SOURCES include/json.hpp
+        SOURCES include/Base64.h
+        SOURCES include/httplib.h
 )
-
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 set_target_properties(appLocalAI PROPERTIES
 #    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appLocalAI
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
+    # MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    # MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    # MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
 
